@@ -27,47 +27,22 @@ app.get('/search', function (req, res){
       from: 0,
       query: {
         match: {
-                cast_name: {
-                    query: req.query['q'],
-                    fuzziness: 4
-                }
-            }
-        }
-    }
-    client.search({index:'vue-elastic', body:body, type:'characters_list'})
-    .then(results => {
-            res.send(results.hits.hits);
-    })
-    .catch(err=>{
-      console.log(err)
-      res.send([]);
-    });
-});
-
-
-app.get('/fs_index/_search', function (req, res){
-    let body = {
-      size: 100,
-      from: 0,
-      query: {
-        match: {
-            content: {
-                    query: req.query['q'],
-                    fuzziness: 4
-                }
-            }
+            message:req.query['q']
+             }
         }
     }
     client.search({index:'fs_index', body:body, type:'characters_list'})
     .then(results => {
             res.send(results.hits.hits);
+            
+            console.log(body);
+            console.log(results);
     })
     .catch(err=>{
       console.log(err)
       res.send([]);
     });
 });
-
 
 app.listen(app.get('port'), function() {
     console.log('Your node.js server is running on PORT: ',app.get('port'));
