@@ -5,7 +5,7 @@
     <div>
       <b-form-input v-model="query" size="sm" placeholder="Enter your Query"></b-form-input>
     </div>
-    <br/> 
+    <br/>
     <div>
       <b-button variant="outline-primary" @click="search" size="sm">Search</b-button>
     </div>
