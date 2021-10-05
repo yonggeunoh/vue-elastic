@@ -27,11 +27,15 @@ app.get('/search', function (req, res){
       from: 0,
       query: {
         match: {
-            message:req.query['q']
-             }
+                content: {
+                    query: req.query['q'],
+                    fuzziness: 4
+                }
+            }
         }
-    }
-    client.search({index:'fs_index', body:body, type:'characters_list'})
+    };
+    console.log(body);
+    client.search({index:'fs_index', body:body})
     .then(results => {
             res.send(results.hits.hits);
             

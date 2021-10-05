@@ -8,6 +8,8 @@ const client = new elasticsearch.Client({
 client.indices.create({
     index: 'fs_index'
 }, function(error, response, status) {
+  
+  console.log("bulkIndindicesex");
     if (error) {
         console.log(error);
     } else {
@@ -18,6 +20,7 @@ client.indices.create({
 const bulkIndex = function bulkIndex(index, type, data) {
     let bulkBody = [];
   
+    console.log("bulkIndex");
     data.forEach(item => {
       bulkBody.push({
         index: {
@@ -45,10 +48,11 @@ client.bulk({body: bulkBody})
   };
 
 async function indexData() {
+  console.log("indexData");
     const articlesRaw = await fs.readFileSync('./data.json');
     const articles = JSON.parse(articlesRaw);
     console.log(`${articles.length} items parsed from data file`);
     bulkIndex('vue-elastic', 'characters_list', articles);
   }
 
-  indexData();
+ indexData();
