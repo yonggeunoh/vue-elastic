@@ -33,7 +33,8 @@ export default {
   },
   methods: {
     search() {
-        this.axios.get('http://localhost:5000/search?q='+this.query)
+        // this.axios.get('http://localhost:5000/search?q='+this.query)
+        this.axios.get('/elastic/_search?q=content:'+this.query)
               .then(response => {
                 this.data = response.data;
           })
