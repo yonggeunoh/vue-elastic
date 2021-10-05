@@ -10,7 +10,7 @@
       <b-button variant="outline-primary" @click="search" size="sm">Search</b-button>
     </div>
     <br/>
-    <div class="mt-2" size="sm">Keyword: {{ query }}</div>
+    <div class="mt-2" size="sm">Find : {{ query }}</div>
   </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     search() {
-        this.axios.get('http://localhost:5000/fs_index/_search?q='+this.query)
+        this.axios.get('http://localhost:5000/search?q='+this.query)
               .then(response => {
                 this.data = response.data;
           })
